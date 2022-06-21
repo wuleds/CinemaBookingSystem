@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>院线购票系统登录界面</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+<div  id="div1">
+  <div id="div2">
+    <form action="/DatabaseHomework_war/UserLoginServlet" method="get">
+        <h1>登录</h1>
+        <p>
+            用户号:&nbsp;<input name="userNum" type="text">
+        </p>
+        <p>
+            密码:&nbsp;<input name="userPassword" type="password">
+        </p>
+        <p>
+            <input name="userPower" type="radio" value="1">普通用户
+            <input name="userPower" type="radio" value="0">游客登录
+        </p>
+        <div>
+            <input type="submit" class="button" style="width: 150px;height: 30px" value="登录">
+            <input type="reset" class="button" style="height: 30px" value="重置">
+            <a href="signup.html">注册</a>
+        </div>
+
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+@charset "utf-8";
+body
+{
+    width:1000px;
+    height:600px;
+    margin-top: 100px;
+}
+
+#div1
+{
+    width:500px;
+    height:300px;
+    margin-left: 500px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius:20px;
+}
+
+#div2
+{
+    width:500px;
+    height:500px;
+    margin-left: 150px;
+}
