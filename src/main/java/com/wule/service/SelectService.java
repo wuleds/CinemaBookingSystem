@@ -1,6 +1,7 @@
 package com.wule.service;
 
 import com.wule.dao.SelectDao;
+import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.User;
 
 import java.sql.SQLException;
@@ -15,10 +16,16 @@ public class SelectService
         return selectdao.userLogin(userNum,userPassword);
     }
 
-    public static void main(String[] args) throws SQLException
+
+    public List<FilmAllDate> allFilmService()
     {
-        SelectService service = new SelectService();
-        List<User> list = service.login("1","123456");
 
     }
+
+//    public static void main(String[] args) throws SQLException
+//    {
+//        SelectService service = new SelectService();
+//        List<User> list = service.login("1","123456");
+//
+//    }
 }

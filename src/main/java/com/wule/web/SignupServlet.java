@@ -21,23 +21,17 @@ public class SignupServlet extends HttpServlet
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         InsertIntoService insertIntoService = new InsertIntoService();
-
+        User user;
 
         String userNum = req.getParameter("userNum");
         String userName = req.getParameter("userName");
         String userPassword = req.getParameter("userPassword");
         String userPasswordToo = req.getParameter("userPasswordToo");
 
-        System.out.println(userName);
-        System.out.println(userNum);
-        System.out.println(userPassword);
-        System.out.println(userPasswordToo);
-
-
-        User user = new User(userNum,userName,userPassword,"user",0);
-        if(userPassword!=null && userPassword.equals(userPasswordToo))
+        if(userPassword.length()>=6&&userNum.length()>=6&&userName.length()>=1 && userPassword.equals(userPasswordToo))
         {
             try {
+                user = new User(userNum,userName,userPassword,"user",0);
                 if (insertIntoService.addUserService(user))
                 {
                     req.getRequestDispatcher("/UI/signupYes.jsp").forward(req,resp);
@@ -53,7 +47,6 @@ public class SignupServlet extends HttpServlet
         }
         else
         {
-            System.out.println("2");
             req.getRequestDispatcher("/UI/signupError.jsp").forward(req,resp);
         }
 

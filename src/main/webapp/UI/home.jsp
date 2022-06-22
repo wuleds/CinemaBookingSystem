@@ -15,27 +15,27 @@
     <c:if test="${user.userPower=='visitor'|| user.userNum != null}">
 
         <div  style="margin-top: 100px;margin-left: 600px">
-            <input type="button" style="width: 200px;height: 50px" name="搜索" value="搜索">
 
-        
-        
-        
-        
-        
+            <form action="/homeAllFilmServlet" method="get" >
+                <input type="submit"  style="width: 200px;height: 50px" name="搜索" value="用户信息">
+            </form>
+
+            <form action="" method="get">
+                <input type="submit" style="width: 200px;height: 50px;margin-top: 20px" name="查看" value="搜索">
+            </form>
+
+            <form action="" method="get">
+                <input type="submit" style="width: 200px;height: 50px;margin-top: 20px" name="查看" value="查看本周电影">
+            </form>
+
+
         </div>
-        
-        
-        
-        
-        
-        
-        
-    </c:if>
 
+    </c:if>
 
     <c:if test="${user ==null}">
         <h3>登录失败</h3>
-        <a href="UI/login.html">返回</a>
+        <a href="/DatabaseHomework_war/UI/login.html">返回</a>
     </c:if>
 </body>
 </html>

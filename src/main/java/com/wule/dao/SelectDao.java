@@ -1,6 +1,7 @@
 package com.wule.dao;
 
 
+import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.User;
 import com.wule.util.DatabaseLinkUtils;
 
@@ -15,19 +16,38 @@ import java.util.List;
 public class SelectDao
 {
     Statement stmt = DatabaseLinkUtils.getStatement();
-    String user_table = " user";
-    String seat_table = " seat";
-    String event_table = " event";
+    String user_table = " user ";
+    String seat_table = " seat ";
+    String event_table = " event ";
+    String film_table = " film ";
+    String cinema_table = " cinema ";
+    String ticket_table = " ticket ";
 
+    String dian = ".";
     String danyingh = "'";
     String space = " ";
     String fenhao = ";";
     String douhao = ",";
     String dengyv = " = ";
-    String all = " * ";
+    String all = "*";
 
     String userNum_col = "userNum";
     String userPassword_col = "userPassword";
+
+    String cinemaNum_col = "cinemaNum";//放映厅编号
+    String filmDate_col = "filmDate";//播放日期
+    String eventNum_col = "eventNum";//场次号
+    String eventBeginTime_col = "eventBeginTime";//场次开始时间
+    String eventEndTime_col = "eventEndTime";//场次结束时间
+
+    String filmNum_col = "filmNum";//电影号
+    String filmName_col = "filmName";//电影名
+    String filmProfile_col = "filmProfile";//电影简介
+    String filmClass_col = "filmClass";//电影分类
+    String filmPrice_col = "filmPrice";//电影价格
+
+
+    String benzhou = " datediff(now(),filmDate) <= 7 ";//计算电影离今天的天数。
 
 
     String select = " select ";
@@ -99,10 +119,61 @@ public class SelectDao
     }
 
 
-    public List<>
+    /**
+     * @作用 查询本周所有电影。
+     * @return
+     * @throws SQLException
+     */
+    public List<FilmAllDate> allFilmDao() throws SQLException
+    {
+        List<FilmAllDate> list = new ArrayList<>();
+
+        String sql=
+                select
+                     +cinemaNum_col+douhao+filmDate_col+douhao+eventNum_col+douhao+
+                     event_table+dian+filmNum_col+douhao+
+                     filmName_col+douhao+filmProfile_col+douhao+filmClass_col+douhao+
+                     filmPrice_col+douhao+eventBeginTime_col+douhao+eventEndTime_col+
+
+                from+event_table+douhao+film_table+
+                where+event_table+dian+filmNum_col+dengyv+film_table+dian+filmNum_col+and+benzhou;
+
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        if (resultSet == null)
+        {
+            return null;
+        }
+
+        while(resultSet.next())//将查询的结果存入表
+        {
+            FilmAllDate filmAllDate = new FilmAllDate();
+
+            filmAllDate.setCinemaNum(resultSet.getString("cinemaNum"));
+            filmAllDate.setFilmDate(resultSet.getString("filmDate"));
+            filmAllDate.setEventNum(resultSet.getString("eventNum"));
+            filmAllDate.setFilmNum(resultSet.getString("event.filmNum"));
+            filmAllDate.setEventBeginTime(resultSet.getString("eventBeginTime"));
+            filmAllDate.setEventEndTime(resultSet.getString("eventEndTime"));
+
+            filmAllDate.setFilmName(resultSet.getString("filmName"));
+            filmAllDate.setFilmProfile(resultSet.getString("filmProfile"));
+            filmAllDate.setFilmClass(resultSet.getString("filmClass"));
+            filmAllDate.setFilmPrice(resultSet.getString("filmPrice"));
+            list.add(filmAllDate);
+        }
+        return list;
+    }
+
     /*public static void main(String[] args) throws SQLException
     {
         SelectDao selectDao = new SelectDao();
-        selectDao.login("123");
+        List<FilmAllDate> list;
+        list = selectDao.allFilmDao();
+        int i = 0;
+        do
+        {
+            System.out.println(list.get(i++));
+        } while (list.size() != i);
     }*/
 }

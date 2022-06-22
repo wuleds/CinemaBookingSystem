@@ -20,21 +20,19 @@ public class InsertIntoService
         InsertIntoDao insertIntoDao = new InsertIntoDao();
         SelectDao selectDao = new SelectDao();
 
-        if(user.getUserNum()==null||user.getUserPassword()==null||user.getUserName()==null)
+        if(user.getUserNum() != null && user.getUserPassword() != null && user.getUserName() != null)
         {
-            return false;
-        }
-
-        if(selectDao.login(user.getUserNum()))
+            if(selectDao.login(user.getUserNum()))
             //判断该用户号是否已经存在
-        {
-            insertIntoDao.addUserDao(user);
-            return true;
+            {
+                insertIntoDao.addUserDao(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
-
 }
