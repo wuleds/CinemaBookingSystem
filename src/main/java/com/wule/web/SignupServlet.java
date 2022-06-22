@@ -1,9 +1,7 @@
 package com.wule.web;
 
-import com.wule.dao.SelectDao;
 import com.wule.pojo.User;
 import com.wule.service.InsertIntoService;
-import com.wule.service.SelectService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,11 +32,11 @@ public class SignupServlet extends HttpServlet
                 user = new User(userNum,userName,userPassword,"user",0);
                 if (insertIntoService.addUserService(user))
                 {
-                    req.getRequestDispatcher("/UI/signupYes.jsp").forward(req,resp);
+                    req.getRequestDispatcher("/signupYes.jsp").forward(req,resp);
                     //注册成功
                 }else
                 {
-                    req.getRequestDispatcher("/UI/signupError.jsp").forward(req,resp);
+                    req.getRequestDispatcher("/signupError.jsp").forward(req,resp);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -46,7 +44,7 @@ public class SignupServlet extends HttpServlet
         }
         else
         {
-            req.getRequestDispatcher("/UI/signupError.jsp").forward(req,resp);
+            req.getRequestDispatcher("/signupError.jsp").forward(req,resp);
         }
 
     }

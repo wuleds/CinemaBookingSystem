@@ -16,7 +16,7 @@
 <div id="div1">
   <div id="div2">
     <h1>注册成功</h1>
-    <h1><a href="/DatabaseHomework_war/UI/login.html">去登录</a></h1>
+    <h1><a href="login.html">去登录</a></h1>
   </div>
 </div>
 </body>

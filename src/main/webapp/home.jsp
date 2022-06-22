@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>院线订票系统首页</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <c:if test="${user.userPower=='visitor'|| user.userNum != null}">
@@ -28,14 +29,20 @@
                 <input type="submit" style="width: 200px;height: 50px;margin-top: 20px" name="查看" value="查看本周电影">
             </form>
 
-
         </div>
 
     </c:if>
 
     <c:if test="${user ==null}">
-        <h3>登录失败</h3>
-        <a href="/DatabaseHomework_war/UI/login.html">返回</a>
+
+        <div id="div1">
+            <div id="div2">
+                <h1>登录失败</h1>
+                <h1><a href="login.html">返回</a></h1>
+            </div>
+        </div>
+
     </c:if>
+
 </body>
 </html>

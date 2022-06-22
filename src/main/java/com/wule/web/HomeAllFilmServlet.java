@@ -31,8 +31,9 @@ public class HomeAllFilmServlet extends HttpServlet
         }
 
         req.setAttribute("list",list);
+        req.setAttribute("a",1);
         //传递电影表
-        req.getRequestDispatcher("/UI/AllFilm.jsp").forward(req,resp);
+        req.getRequestDispatcher("/AllFilm.jsp").forward(req,resp);
     }
 
     @Override

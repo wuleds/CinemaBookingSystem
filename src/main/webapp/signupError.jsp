@@ -9,13 +9,13 @@
 <html>
 <head>
     <title>输入提示</title>
-    <link rel="stylesheet" type="text/css" href="/DatabaseHomework_war/UI/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <div id="div1">
         <div id="div2">
              <h1>输入有误</h1>
-             <h1><a href="/DatabaseHomework_war/UI/signup.html">继续注册-></a></h1>
+             <h1><a href="signup.html">继续注册-></a></h1>
         </div>
     </div>
 </body>

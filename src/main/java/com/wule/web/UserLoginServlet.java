@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 //创建于2022/6/21 11:39
-@WebServlet("/UserLoginServlet")
+@WebServlet("/userLoginServlet")
 public class UserLoginServlet extends HttpServlet
 {
 
@@ -50,7 +50,7 @@ public class UserLoginServlet extends HttpServlet
 
         }
         req.setAttribute("user",user);
-        req.getRequestDispatcher("/UI/home.jsp").forward(req,resp);
+        req.getRequestDispatcher("/home.jsp").forward(req,resp);
     }
 
     @Override

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>本周电影</title>
@@ -27,14 +27,15 @@
         <th>结束时间时间</th>
         <th>操作</th>
     </tr>
-
+    ${a}
     <c:forEach items="${list}" var="FilmAllDate" varStatus="status">
         <tr style="text-align:center">
+
             <td>${status.count}</td>
             <td>${FilmAllDate.cinemaNum}</td>
             <td>${FilmAllDate.filmDate}</td>
             <td>${FilmAllDate.eventNum}</td>
-            <td>${FilmAllDate.event.filmNum}</td>
+            <td>${FilmAllDate.filmNum}</td>
             <td>${FilmAllDate.filmName}</td>
             <td>${FilmAllDate.filmProfile}</td>
             <td>${FilmAllDate.filmClass}</td>
@@ -43,7 +44,7 @@
             <td>${FilmAllDate.eventEndTime}</td>
             <td>
                 <form action="" method="get">
-                    <input type="submit" name="购买" value="购买">
+                    <input type="submit" value="购买">
                 </form>
             </td>
         </tr>
