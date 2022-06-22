@@ -16,7 +16,7 @@
 
         <div  style="margin-top: 100px;margin-left: 600px">
 
-            <form action="/homeAllFilmServlet" method="get" >
+            <form action="" method="get" >
                 <input type="submit"  style="width: 200px;height: 50px" name="搜索" value="用户信息">
             </form>
 
@@ -24,7 +24,7 @@
                 <input type="submit" style="width: 200px;height: 50px;margin-top: 20px" name="查看" value="搜索">
             </form>
 
-            <form action="" method="get">
+            <form action="/DatabaseHomework_war/homeAllFilmServlet" method="get">
                 <input type="submit" style="width: 200px;height: 50px;margin-top: 20px" name="查看" value="查看本周电影">
             </form>
 

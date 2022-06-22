@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
 
 //创建于2022/6/21 11:39
 @WebServlet("/UserLoginServlet")
@@ -36,16 +35,20 @@ public class UserLoginServlet extends HttpServlet
         }
         else//如果不为游客
         {
-            try {
+            try
+            {
                 list = service.login(userNum,userPassword);//查询数据库是否有此人
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
                 throw new RuntimeException(e);
             }
 
             if(list!=null)//如果不为空说明有此人。
+            {
                 user = list.get(0);
+            }
+
         }
-        System.out.println(user);
         req.setAttribute("user",user);
         req.getRequestDispatcher("/UI/home.jsp").forward(req,resp);
     }

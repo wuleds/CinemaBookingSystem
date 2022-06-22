@@ -17,15 +17,26 @@ public class SelectService
     }
 
 
-    public List<FilmAllDate> allFilmService()
+    /**
+     * @作用 调用Dao层，返回本周电影所有信息。
+     * @return List
+     * @throws SQLException
+     */
+    public List<FilmAllDate> allFilmService() throws SQLException
     {
-
+        SelectDao selectdao = new SelectDao();
+        return selectdao.allFilmDao();//返回表
     }
 
 //    public static void main(String[] args) throws SQLException
 //    {
 //        SelectService service = new SelectService();
-//        List<User> list = service.login("1","123456");
+//        List<FilmAllDate> list = service.allFilmService();
+//        int i = 0;
+//        do
+//        {
+//            System.out.println(list.get(i++));
+//        } while (list.size() != i);
 //
 //    }
 }

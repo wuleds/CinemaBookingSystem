@@ -38,7 +38,6 @@ public class SignupServlet extends HttpServlet
                     //注册成功
                 }else
                 {
-                    System.out.println("1");
                     req.getRequestDispatcher("/UI/signupError.jsp").forward(req,resp);
                 }
             } catch (SQLException e) {

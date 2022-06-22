@@ -120,8 +120,8 @@ public class SelectDao
 
 
     /**
-     * @作用 查询本周所有电影。
-     * @return
+     * @作用 查询本周所有电影,并返回。
+     * @return List FilmAllDate
      * @throws SQLException
      */
     public List<FilmAllDate> allFilmDao() throws SQLException
@@ -145,7 +145,7 @@ public class SelectDao
             return null;
         }
 
-        while(resultSet.next())//将查询的结果存入表
+        while(resultSet.next())//将查询的结果存入对象
         {
             FilmAllDate filmAllDate = new FilmAllDate();
 
@@ -161,6 +161,7 @@ public class SelectDao
             filmAllDate.setFilmClass(resultSet.getString("filmClass"));
             filmAllDate.setFilmPrice(resultSet.getString("filmPrice"));
             list.add(filmAllDate);
+            //将对象存入表
         }
         return list;
     }

@@ -32,6 +32,7 @@ public class FilmAllDate
     }
 
     public String getCinemaNum() {
+        System.out.println(cinemaNum);
         return cinemaNum;
     }
 
