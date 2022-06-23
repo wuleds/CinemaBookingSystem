@@ -67,7 +67,8 @@ public class User
                 "userNum='" + userNum + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
-                ", userIntegration='" + userIntegration + '\'' +
+                ", userPower='" + userPower + '\'' +
+                ", userIntegration=" + userIntegration +
                 '}';
     }
 }

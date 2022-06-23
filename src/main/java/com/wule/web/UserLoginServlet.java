@@ -28,7 +28,7 @@ public class UserLoginServlet extends HttpServlet
         String userPassword = req.getParameter("userPassword");
         //用户输入账户密码
 
-        if(req.getParameter("userPower") != null && req.getParameter("userPower").equals("0"))
+        if(req.getParameter("userPower") != null && "visitor".equals(req.getParameter("userPower")))
         {
             user = new User();
             user.setUserPower("visitor");//标记为游客
@@ -49,6 +49,7 @@ public class UserLoginServlet extends HttpServlet
             }
 
         }
+
         req.setAttribute("user",user);
         req.getRequestDispatcher("/home.jsp").forward(req,resp);
     }

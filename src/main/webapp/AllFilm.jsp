@@ -5,14 +5,15 @@
   Time: 9:58
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>本周电影</title>
 </head>
 <body>
-<table border="1px" cellspacing="0" width="800px">
+<table border="1px" cellspacing="0" width="900px">
     <tr>
         <th>序号</th>
         <th>放映厅号</th>
@@ -24,10 +25,10 @@
         <th>电影分类</th>
         <th>电影价格</th>
         <th>开始时间</th>
-        <th>结束时间时间</th>
+        <th>结束时间</th>
         <th>操作</th>
     </tr>
-    ${a}
+
     <c:forEach items="${list}" var="FilmAllDate" varStatus="status">
         <tr style="text-align:center">
 
@@ -42,14 +43,31 @@
             <td>${FilmAllDate.filmPrice}</td>
             <td>${FilmAllDate.eventBeginTime}</td>
             <td>${FilmAllDate.eventEndTime}</td>
+
             <td>
-                <form action="" method="get">
-                    <input type="submit" value="购买">
-                </form>
+                <c:if test="${user.userPower = 'visitor'}">
+                    <a href="login.html">请登录</a>
+                </c:if>
+
+                <c:if test="${user.userPower != 'visitor'}">
+                     <a href="/DatabaseHomework_war/byTicketServlet
+                ?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}&userName=${userName}
+                &cinemaNum=${FilmAllDate.cinemaNum}&filmDate=${FilmAllDate.filmDate}&eventNum=${FilmAllDate.eventNum}
+                &filmNum=${FilmAllDate.filmNum}&filmPrice=${FilmAllDate.filmPrice}&filmName=${FilmAllDate.filmName}
+" method="get">
+                        <input type="submit" value="购买">
+                    </a>
+                </c:if>
             </td>
         </tr>
     </c:forEach>
+
 </table>
+
+    <a href="/DatabaseHomework_war/userLoginServlet?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}">
+        <input type="submit" value="返回主页面">
+    </a>
+
 
 </body>
 </html>

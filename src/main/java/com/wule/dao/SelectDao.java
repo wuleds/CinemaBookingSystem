@@ -16,6 +16,7 @@ import java.util.List;
 public class SelectDao
 {
     Statement stmt = DatabaseLinkUtils.getStatement();
+
     String user_table = " user ";
     String seat_table = " seat ";
     String event_table = " event ";
@@ -23,13 +24,13 @@ public class SelectDao
     String cinema_table = " cinema ";
     String ticket_table = " ticket ";
 
-    String dian = ".";
-    String danyingh = "'";
-    String space = " ";
-    String fenhao = ";";
-    String douhao = ",";
-    String dengyv = " = ";
-    String all = "*";
+    String dian =       ".";
+    String danyingh =    "'";
+    String space =      " ";
+    String fenhao =      ";";
+    String douhao =      ",";
+    String dengyv =      " = ";
+    String all =         "*";
 
     String userNum_col = "userNum";
     String userPassword_col = "userPassword";
@@ -166,15 +167,39 @@ public class SelectDao
         return list;
     }
 
+    /**
+     * @作用 根据用户号返回该用户所有数据
+     * @param userNum
+     * @return
+     * @throws SQLException
+     */
+    public User userData(String userNum) throws SQLException
+    {
+        User user = new User();
+        String sql=
+                select+all+from+user_table+where+userNum_col+dengyv+danyingh+userNum+danyingh+fenhao;
+
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        while(resultSet.next())
+        {
+            user.setUserNum(resultSet.getString("userNum"));
+            user.setUserName(resultSet.getString("userName"));
+            user.setUserPassword(resultSet.getString("userPassword"));
+            user.setUserPower(resultSet.getString("userPower"));
+            user.setUserIntegration(resultSet.getInt("userIntegration"));
+        }
+        return user;
+    }
+
     /*public static void main(String[] args) throws SQLException
     {
         SelectDao selectDao = new SelectDao();
-        List<FilmAllDate> list;
-        list = selectDao.allFilmDao();
-        int i = 0;
-        do
-        {
-            System.out.println(list.get(i++));
-        } while (list.size() != i);
+        User user;
+
+        user = selectDao.userData("1");
+
+        System.out.println(user);
+
     }*/
 }

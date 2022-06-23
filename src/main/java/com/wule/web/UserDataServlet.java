@@ -1,6 +1,5 @@
 package com.wule.web;
 
-import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.User;
 import com.wule.service.SelectService;
 
@@ -11,29 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-//创建于2022/6/21 11:53
-@WebServlet("/homeAllFilmServlet")
-public class HomeAllFilmServlet extends HttpServlet
+//创建于2022/6/23 15:51
+@WebServlet("/userDataServlet")
+public class UserDataServlet extends HttpServlet
 {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        SelectService service = new SelectService();
-        List<FilmAllDate> list;
-        User user;
-
+        User user = new User();
+        String userNum = req.getParameter("userNum");
         String userPower = req.getParameter("userPower");
+        SelectService service = new SelectService();
 
-        if("visitor".equals(userPower))
+        if (userPower.equals("visitor"))
         {
-            user = new User();
-            user.setUserPower("visitor");
+            user.setUserPower(userPower);
         }
         else
         {
-            String userNum = req.getParameter("userNum");
             try {
                 user = service.userData(userNum);
             } catch (SQLException e) {
@@ -41,21 +36,10 @@ public class HomeAllFilmServlet extends HttpServlet
             }
         }
 
-
-        //?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}&userName=${userName}&userIntegration=${user.userIntegration}
-
-        try {
-            list = service.allFilmService();
-            //获取电影信息
-        } catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-        req.setAttribute("list",list);
-        //传递电影表
         req.setAttribute("user",user);
-        //传递用户信息
-        req.getRequestDispatcher("/AllFilm.jsp").forward(req,resp);
+        System.out.println(user);
+        req.getRequestDispatcher("/UserData.jsp").forward(req,resp);
+
     }
 
     @Override

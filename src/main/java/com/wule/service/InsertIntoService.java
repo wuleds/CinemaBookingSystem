@@ -35,4 +35,22 @@ public class InsertIntoService
         }
         return false;
     }
+
+    /**
+     * @作用 给用户加积分，票仓加票。
+     * @param userNum
+     * @param cinemaNum
+     * @param filmDate
+     * @param eventNum
+     * @param filmNum
+     * @param filmPrice
+     * @throws SQLException
+     */
+    public void byTicketService(String userNum,String cinemaNum,String filmDate,String eventNum,
+                                String filmNum,int filmPrice) throws SQLException
+    {
+        InsertIntoDao insertIntoDao = new InsertIntoDao();
+
+        insertIntoDao.byTicketDao(userNum,cinemaNum,filmDate,eventNum,filmNum,filmPrice);
+    }
 }
