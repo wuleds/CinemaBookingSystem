@@ -10,14 +10,34 @@
 <html>
 <head>
     <title>购买成功</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+        <div id="div1">
+            <div id="div2">
+                用户号：&nbsp;${user.userNum}
+                用户名：&nbsp;${user.userName}
+                放映厅号：&nbsp;${filmAllDate.cinemaNum}
+                <br>
+                播放日期：&nbsp;${filmAllDate.filmDate}
+                场次号：&nbsp;${filmAllDate.eventNum}
+                <br>
+                电影号：&nbsp;${filmAllDate.filmNum}
+                电影名：&nbsp;${filmAllDate.filmName}
 
-<div id="div1">
-    <div id="div2">
+                <br>
+                <c:forEach items="${seatList}" var="seat" varStatus="id">
 
-        <a href="/DatabaseHomework_ear/userLoginServlet"><input type="button" value="返回主页"></a>
-    </div>
-</div>
+                    <a href="/DatabaseHomework_ear/byTicketServlet?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}&userName=${userName}
+                        &cinemaNum=${FilmAllDate.cinemaNum}&filmDate=${FilmAllDate.filmDate}&eventNum=${FilmAllDate.eventNum}
+                        &filmNum=${FilmAllDate.filmNum}&filmPrice=${FilmAllDate.filmPrice}&filmName=${FilmAllDate.filmName}&seatNum=${seat.seatNum}">
+                            ${seat.seatNum}号位
+                    </a>
+                    <c:if test="${id.count == '5' || id.count == '10' || id.count == '15'}">
+                        <br>
+                    </c:if>
+                </c:forEach>
+            </div>
+        </div>
 </body>
 </html>

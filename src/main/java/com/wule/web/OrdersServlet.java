@@ -1,6 +1,7 @@
 package com.wule.web;
 
 import com.wule.pojo.FilmAllDate;
+import com.wule.pojo.Seat;
 import com.wule.pojo.User;
 import com.wule.service.InsertIntoService;
 import com.wule.service.SelectService;
@@ -12,21 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
-//创建于2022/6/22 23:21
-@WebServlet("/byTicketServlet")
-public class ByTicketServlet extends HttpServlet
+//创建于2022/6/23 22:52
+@WebServlet("/ordersServlet")
+public class OrdersServlet extends HttpServlet
 {
-
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-    {
-
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user;
         SelectService service = new SelectService();
-        InsertIntoService insert = new InsertIntoService();
-
+        List<Seat> list;
+        try {
+             list = service.getSeat();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         String userNum = req.getParameter("userNum");
         String cinemaNum = req.getParameter("cinemaNum");
         String filmDate = req.getParameter("filmDate");
@@ -40,22 +42,19 @@ public class ByTicketServlet extends HttpServlet
 
         try
         {
-            user = service.userData("userNum");
+            user = service.userData(userNum);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        if(user.getUserIntegration() > 100)
+
+        if(user.getUserIntegration() >= 100)
         {
             price = (int) (Integer.parseInt(filmPrice) * 0.5);
-        }
 
-        //向数据库添加信息
-        try {
-            insert.byTicketService(userNum,cinemaNum,filmDate,eventNum,filmNum, Integer.parseInt(filmPrice));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        }else
+        {
+            price = Integer.parseInt(filmPrice);
         }
-
         filmAllDate.setCinemaNum(cinemaNum);
         filmAllDate.setFilmDate(filmDate);
         filmAllDate.setEventNum(eventNum);
@@ -63,10 +62,14 @@ public class ByTicketServlet extends HttpServlet
         filmAllDate.setFilmName(filmName);
         filmAllDate.setFilmPrice(String.valueOf(price));
 
-        //显示付费信息
+
+
+        req.setAttribute("price",price);
         req.setAttribute("user",user);
         req.setAttribute("filmAllDate",filmAllDate);
-        req.getRequestDispatcher("/.jsp").forward(req,resp);
+        req.setAttribute("seatList",list);
+
+        req.getRequestDispatcher("/orders.jsp").forward(req,resp);
     }
 
     @Override

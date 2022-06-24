@@ -2,6 +2,7 @@ package com.wule.service;
 
 import com.wule.dao.SelectDao;
 import com.wule.pojo.FilmAllDate;
+import com.wule.pojo.Seat;
 import com.wule.pojo.User;
 
 import java.sql.SQLException;
@@ -48,6 +49,16 @@ public class SelectService
     }
 
 
+    /**
+     * @作用 返回所有座位信息
+     * @return List
+     * @throws SQLException
+     */
+    public List<Seat> getSeat() throws SQLException {
+        SelectDao selectdao = new SelectDao();
+        List<Seat> list = selectdao.getSeat();
+        return list;
+    }
 //
 //    public static void main(String[] args) throws SQLException
 //    {

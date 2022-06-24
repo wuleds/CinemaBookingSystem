@@ -13,6 +13,7 @@
     <title>本周电影</title>
 </head>
 <body>
+
 <table border="1px" cellspacing="0" width="900px">
     <tr>
         <th>序号</th>
@@ -40,21 +41,19 @@
             <td>${FilmAllDate.filmName}</td>
             <td>${FilmAllDate.filmProfile}</td>
             <td>${FilmAllDate.filmClass}</td>
-            <td>${FilmAllDate.filmPrice}</td>
+            <td>${FilmAllDate.filmPrice}￥</td>
             <td>${FilmAllDate.eventBeginTime}</td>
             <td>${FilmAllDate.eventEndTime}</td>
 
             <td>
-                <c:if test="${user.userPower = 'visitor'}">
+                <c:if test="${user.userPower == 'visitor'}">
                     <a href="login.html">请登录</a>
                 </c:if>
 
                 <c:if test="${user.userPower != 'visitor'}">
-                     <a href="/DatabaseHomework_war/byTicketServlet
-                ?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}&userName=${userName}
-                &cinemaNum=${FilmAllDate.cinemaNum}&filmDate=${FilmAllDate.filmDate}&eventNum=${FilmAllDate.eventNum}
-                &filmNum=${FilmAllDate.filmNum}&filmPrice=${FilmAllDate.filmPrice}&filmName=${FilmAllDate.filmName}
-" method="get">
+                     <a href="/DatabaseHomework_war/ordersServlet?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}&userName=${userName}
+                     &cinemaNum=${FilmAllDate.cinemaNum}&filmDate=${FilmAllDate.filmDate}&eventNum=${FilmAllDate.eventNum}
+                &filmNum=${FilmAllDate.filmNum}&filmPrice=${FilmAllDate.filmPrice}&filmName=${FilmAllDate.filmName}">
                         <input type="submit" value="购买">
                     </a>
                 </c:if>

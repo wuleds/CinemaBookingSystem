@@ -2,6 +2,7 @@ package com.wule.dao;
 
 
 import com.wule.pojo.FilmAllDate;
+import com.wule.pojo.Seat;
 import com.wule.pojo.User;
 import com.wule.util.DatabaseLinkUtils;
 
@@ -192,14 +193,49 @@ public class SelectDao
         return user;
     }
 
-    /*public static void main(String[] args) throws SQLException
+
+    /**
+     * @作用 返回所有座位信息
+     * @return List
+     * @throws SQLException
+     */
+    public List<Seat> getSeat() throws SQLException
     {
-        SelectDao selectDao = new SelectDao();
-        User user;
+        List<Seat> list = new ArrayList<>();
+        String sql =
+                select+all+
+                        from+seat_table+fenhao;
+        ResultSet resultSet = stmt.executeQuery(sql);
+        while(resultSet.next())
+        {
+            Seat seat = new Seat();
+            seat.setCinemaNum(resultSet.getString("cinemaNum"));
+            seat.setFilmDate(resultSet.getString("filmDate"));
+            seat.setEventNum(resultSet.getString("eventNum"));
+            seat.setUserNum(resultSet.getString("userNum"));
+            seat.setSeatNum(resultSet.getString("seatNum"));
 
-        user = selectDao.userData("1");
+            list.add(seat);
+        }
 
-        System.out.println(user);
+        return list;
 
-    }*/
+    }
+//    public static void main(String[] args) throws SQLException
+//    {
+//        SelectDao selectDao = new SelectDao();
+//        Seat seat;
+//        List<Seat> list = selectDao.getSeat();
+//        if(list.size() == 0)
+//            System.out.println(1);
+//        else{
+//            int i = 0;
+//            do {
+//                seat = list.get(i++);
+//                System.out.println(seat);
+//            } while (i != list.size());
+//
+//        }
+//
+//    }
 }
