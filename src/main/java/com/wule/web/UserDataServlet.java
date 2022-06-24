@@ -30,7 +30,7 @@ public class UserDataServlet extends HttpServlet
         else
         {
             try {
-                user = service.userData(userNum);
+                user = service.userDataService(userNum);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

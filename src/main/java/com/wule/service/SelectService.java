@@ -18,10 +18,10 @@ public class SelectService
      * @return List
      * @throws SQLException ,
      */
-    public List<User> login(String userNum,String userPassword) throws SQLException
+    public List<User> loginService(String userNum, String userPassword) throws SQLException
     {
         SelectDao selectdao = new SelectDao();
-        return selectdao.userLogin(userNum,userPassword);
+        return selectdao.userLoginDao(userNum,userPassword);
     }
 
 
@@ -33,7 +33,7 @@ public class SelectService
     public List<FilmAllDate> allFilmService() throws SQLException
     {
         SelectDao selectdao = new SelectDao();
-        return selectdao.allFilmDao();//返回表
+        return selectdao.getAllFilmDao();//返回表
     }
 
 
@@ -43,9 +43,9 @@ public class SelectService
      * @return User
      * @throws SQLException ,
      */
-    public User userData(String userNum) throws SQLException {
+    public User userDataService(String userNum) throws SQLException {
         SelectDao selectdao = new SelectDao();
-        return selectdao.userData(userNum);
+        return selectdao.userDataDao(userNum);
     }
 
 
@@ -54,10 +54,24 @@ public class SelectService
      * @return List
      * @throws SQLException
      */
-    public List<Seat> getSeat() throws SQLException {
+    public List<Seat> getSeatService() throws SQLException
+    {
         SelectDao selectdao = new SelectDao();
-        List<Seat> list = selectdao.getSeat();
-        return list;
+        return selectdao.getSeat();
+    }
+
+
+    /**
+     * @作用 判断该用户是否有人；如果有人，则返回用户号。
+     * @param filmAllDate 座位信息
+     * @param seatNum 座位号
+     * @return String userNum 用户号
+     */
+    public String getSeadUserNumService(FilmAllDate filmAllDate,String seatNum) throws SQLException
+    {
+        SelectDao selectDao = new SelectDao();
+
+        return selectDao.getSeadUserNumDao(filmAllDate,seatNum);
     }
 //
 //    public static void main(String[] args) throws SQLException

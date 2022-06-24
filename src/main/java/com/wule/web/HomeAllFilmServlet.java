@@ -35,7 +35,7 @@ public class HomeAllFilmServlet extends HttpServlet
         {
             String userNum = req.getParameter("userNum");
             try {
-                user = service.userData(userNum);
+                user = service.userDataService(userNum);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

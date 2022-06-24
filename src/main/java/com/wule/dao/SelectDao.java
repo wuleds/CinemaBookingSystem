@@ -47,6 +47,7 @@ public class SelectDao
     String filmProfile_col = "filmProfile";//电影简介
     String filmClass_col = "filmClass";//电影分类
     String filmPrice_col = "filmPrice";//电影价格
+    String seatNum_col = "seatNum";
 
 
     String benzhou = " datediff(now(),filmDate) <= 7 ";//计算电影离今天的天数。
@@ -67,7 +68,7 @@ public class SelectDao
      * @return
      * @throws SQLException
      */
-    public List<User> userLogin(String userNum,String userPassword) throws SQLException
+    public List<User> userLoginDao(String userNum, String userPassword) throws SQLException
     {
 
         List<User> list = new ArrayList<>();
@@ -102,7 +103,7 @@ public class SelectDao
      * @return
      * @throws SQLException
      */
-    public boolean login(String userNum) throws SQLException
+    public boolean loginDao(String userNum) throws SQLException
     {
         String sql =
                 select+userNum_col
@@ -126,7 +127,7 @@ public class SelectDao
      * @return List FilmAllDate
      * @throws SQLException
      */
-    public List<FilmAllDate> allFilmDao() throws SQLException
+    public List<FilmAllDate> getAllFilmDao() throws SQLException
     {
         List<FilmAllDate> list = new ArrayList<>();
 
@@ -174,7 +175,7 @@ public class SelectDao
      * @return
      * @throws SQLException
      */
-    public User userData(String userNum) throws SQLException
+    public User userDataDao(String userNum) throws SQLException
     {
         User user = new User();
         String sql=
@@ -221,21 +222,44 @@ public class SelectDao
         return list;
 
     }
+
+
+    /**
+     * @作用 根据座位号和其他信息查询该座位是否有人；如果有人，则返回用户号。
+     * @param filmAllDate 放映厅号、场次号等信息
+     * @param seatNum 座位号
+     * @return userNum
+     */
+    public String getSeadUserNumDao(FilmAllDate filmAllDate,String seatNum) throws SQLException
+    {
+        String userNum = null;
+
+        String sql=select+userNum_col+
+                from+seat_table+
+                where+
+                cinemaNum_col+dengyv+danyingh+filmAllDate.getCinemaNum()+danyingh+and+
+                filmDate_col+dengyv+danyingh+filmAllDate.getFilmDate()+danyingh+and+
+                eventNum_col+dengyv+danyingh+filmAllDate.getEventNum()+danyingh+and+
+                seatNum_col+dengyv+danyingh+seatNum+danyingh+and+
+                filmNum_col+dengyv+danyingh+filmAllDate.getFilmNum()+danyingh+
+                fenhao;
+
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        while(resultSet.next())
+            userNum = resultSet.getString("userNum");
+
+        if (userNum == null || userNum.length()<1)
+            return null;
+
+        return userNum;
+    }
 //    public static void main(String[] args) throws SQLException
 //    {
 //        SelectDao selectDao = new SelectDao();
-//        Seat seat;
-//        List<Seat> list = selectDao.getSeat();
-//        if(list.size() == 0)
-//            System.out.println(1);
-//        else{
-//            int i = 0;
-//            do {
-//                seat = list.get(i++);
-//                System.out.println(seat);
-//            } while (i != list.size());
 //
-//        }
+//        String userNum = selectDao.getSeadUserNumDao(new FilmAllDate("1","1","2022-6-21","2"),"1");
 //
+//        System.out.println(userNum);
 //    }
 }

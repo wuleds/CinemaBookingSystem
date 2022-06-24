@@ -3,7 +3,6 @@ package com.wule.web;
 import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.Seat;
 import com.wule.pojo.User;
-import com.wule.service.InsertIntoService;
 import com.wule.service.SelectService;
 
 import javax.servlet.ServletException;
@@ -25,7 +24,7 @@ public class OrdersServlet extends HttpServlet
         SelectService service = new SelectService();
         List<Seat> list;
         try {
-             list = service.getSeat();
+             list = service.getSeatService();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -42,7 +41,7 @@ public class OrdersServlet extends HttpServlet
 
         try
         {
-            user = service.userData(userNum);
+            user = service.userDataService(userNum);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

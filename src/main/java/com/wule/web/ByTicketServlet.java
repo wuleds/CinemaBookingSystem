@@ -40,7 +40,7 @@ public class ByTicketServlet extends HttpServlet
 
         try
         {
-            user = service.userData("userNum");
+            user = service.userDataService("userNum");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

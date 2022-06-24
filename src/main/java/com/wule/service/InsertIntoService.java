@@ -2,9 +2,11 @@ package com.wule.service;
 
 import com.wule.dao.InsertIntoDao;
 import com.wule.dao.SelectDao;
+import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 //创建于2022/6/21 15:24
 public class InsertIntoService
@@ -22,7 +24,7 @@ public class InsertIntoService
 
         if(user.getUserNum() != null && user.getUserPassword() != null && user.getUserName() != null)
         {
-            if(selectDao.login(user.getUserNum()))
+            if(selectDao.loginDao(user.getUserNum()))
             //判断该用户号是否已经存在
             {
                 insertIntoDao.addUserDao(user);
@@ -53,4 +55,40 @@ public class InsertIntoService
 
         insertIntoDao.byTicketDao(userNum,cinemaNum,filmDate,eventNum,filmNum,filmPrice);
     }
+
+
+    /**
+     * @作用 按照参数添加参数个座位
+     * @param filmAllDate
+     * @throws SQLException
+     */
+    public void addSeat(FilmAllDate filmAllDate) throws SQLException
+    {
+        int seatCount = 20;
+        InsertIntoDao insertIntoDao = new InsertIntoDao();
+
+        for(int i = 1;i <= seatCount;i++)
+            insertIntoDao.addSeatDao(filmAllDate,i);
+    }
+
+    /**
+     * @作用 查询本周所有电影，然后给所有场次添加座位
+     */
+    public void addAllEventSeat() throws SQLException {
+        InsertIntoService service = new InsertIntoService();
+        SelectDao dao = new SelectDao();
+        List<FilmAllDate> list = dao.getAllFilmDao();
+
+        int i=0;
+        do
+        {
+            service.addSeat(list.get(i++));
+        } while (i != list.size());
+
+    }
+
+//    public static void main(String[] args) throws SQLException {
+//        InsertIntoService service = new InsertIntoService();
+//        service.addAllEventSeat();
+//    }
 }

@@ -37,7 +37,7 @@ public class UserLoginServlet extends HttpServlet
         {
             try
             {
-                list = service.login(userNum,userPassword);//查询数据库是否有此人
+                list = service.loginService(userNum,userPassword);//查询数据库是否有此人
             } catch (SQLException e)
             {
                 throw new RuntimeException(e);

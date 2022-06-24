@@ -1,7 +1,7 @@
 package com.wule.dao;
 
+import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.User;
-import com.wule.service.InsertIntoService;
 import com.wule.util.DatabaseLinkUtils;
 
 import java.sql.SQLException;
@@ -32,7 +32,7 @@ public class InsertIntoDao
     String fenhao =    ";";
     String douhao =    ",";
     String dengyv =   " = ";
-    String all =       "*";
+    String all =       " * ";
     String add = " + ";
 
     String userNum_col = "userNum";
@@ -44,6 +44,7 @@ public class InsertIntoDao
     String eventNum_col = "eventNum";//场次号
     String eventBeginTime_col = "eventBeginTime";//场次开始时间
     String eventEndTime_col = "eventEndTime";//场次结束时间
+    String seatNum_col = "seatNum";
 
     String filmNum_col = "filmNum";//电影号
     String filmName_col = "filmName";//电影名
@@ -107,9 +108,29 @@ public class InsertIntoDao
     }
 
 
+    /**
+     * @作用 添加座位
+     * @param filmAllDate
+     * @param seatNum
+     * @throws SQLException
+     */
+    public void addSeatDao(FilmAllDate filmAllDate, int seatNum) throws SQLException {
+        String sql=
+                insert+seat_table+"("+cinemaNum_col+douhao+filmDate_col+douhao+eventNum_col+douhao+filmNum_col+douhao+seatNum_col+douhao+userNum_col+")"+
+                        values+
+                        "("+danyingh+filmAllDate.getCinemaNum()+danyingh+douhao+
+                        danyingh+filmAllDate.getFilmDate()+danyingh+douhao+
+                        danyingh+filmAllDate.getEventNum()+danyingh+douhao+
+                        danyingh+filmAllDate.getFilmNum()+danyingh+douhao+
+                        danyingh+seatNum+danyingh+douhao+
+                        null+")"+fenhao;
+        stmt.executeUpdate(sql);
+    }
+
+
 //    public static void main(String[] args) throws SQLException
 //    {
 //        InsertIntoDao insertIntoService = new InsertIntoDao();
-//        insertIntoService.byTicketDao("1","1","2022-06-21","1","2",50);
+//        insertIntoService.addSeat(new FilmAllDate("1","1","2022-6-21","2"),1);
 //    }
 }

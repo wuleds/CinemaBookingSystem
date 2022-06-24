@@ -14,6 +14,15 @@ public class FilmAllDate
     String eventBeginTime;//场次开始时间
     String eventEndTime;//场次结束时间
 
+    public FilmAllDate() {
+    }
+
+    public FilmAllDate(String cinemaNum, String eventNum, String filmDate, String filmNum) {
+        this.cinemaNum = cinemaNum;
+        this.eventNum = eventNum;
+        this.filmDate = filmDate;
+        this.filmNum = filmNum;
+    }
 
     @Override
     public String toString() {
@@ -32,7 +41,6 @@ public class FilmAllDate
     }
 
     public String getCinemaNum() {
-        System.out.println(cinemaNum);
         return cinemaNum;
     }
 
