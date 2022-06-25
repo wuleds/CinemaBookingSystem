@@ -13,8 +13,8 @@ public class SelectService
 {
     /**
      * @作用 调用Dao层，根据用户号和密码查询是否有此人，可以用来查密码是否正确
-     * @param userNum ,
-     * @param userPassword ,
+     * @param userNum 用户号
+     * @param userPassword 密码
      * @return List
      * @throws SQLException ,
      */
@@ -39,11 +39,12 @@ public class SelectService
 
     /**
      * @作用 根据用户号查询用户所有信息
-     * @param userNum ,
-     * @return User
+     * @param userNum 用户号
+     * @return User 用户信息
      * @throws SQLException ,
      */
-    public User userDataService(String userNum) throws SQLException {
+    public User userDataService(String userNum) throws SQLException
+    {
         SelectDao selectdao = new SelectDao();
         return selectdao.userDataDao(userNum);
     }
@@ -54,10 +55,10 @@ public class SelectService
      * @return List
      * @throws SQLException
      */
-    public List<Seat> getSeatService() throws SQLException
+    public List<Seat> getSeatService(FilmAllDate filmAllDate) throws SQLException
     {
         SelectDao selectdao = new SelectDao();
-        return selectdao.getSeat();
+        return selectdao.getSeatDao(filmAllDate);
     }
 
 
@@ -73,20 +74,47 @@ public class SelectService
 
         return selectDao.getSeadUserNumDao(filmAllDate,seatNum);
     }
-//
+
+    /**
+     * @作用 根据参数查询对应的电影信息。
+     * @param filmName 电影名
+     * @return List
+     * @throws SQLException
+     */
+    public List<FilmAllDate> fromNameToFilmService(String filmName) throws SQLException
+    {
+        SelectDao selectDao = new SelectDao();
+        List<FilmAllDate> list;
+
+        return selectDao.fromNameToFilmDao(filmName);
+    }
+
+
+    /**
+     * @作用 根据参数查询对应的电影信息。
+     * @param Class
+     * @return List
+     * @throws SQLException
+     */
+    public List<FilmAllDate> fromClassToFilmService(String Class) throws SQLException
+    {
+        SelectDao selectDao = new SelectDao();
+
+        return selectDao.fromClassToFilmDateDao(Class);
+    }
+
+
+
+
 //    public static void main(String[] args) throws SQLException
 //    {
 //        SelectService service = new SelectService();
-//        List<FilmAllDate> list = service.allFilmService();
+//        List<Seat> list = service.getSeatService(new FilmAllDate("1","1","2022-6-21","2"));
 //        int i = 0;
 //        do
 //        {
 //            System.out.println(list.get(i++));
 //        } while (list.size() != i);
-//
-//        User user;
-//        user = service.userData("1");
-//        System.out.println(user);
 //
 //    }
 }

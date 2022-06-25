@@ -33,40 +33,33 @@ public class ByTicketServlet extends HttpServlet
         String eventNum = req.getParameter("eventNum");
         String filmNum = req.getParameter("filmNum");
         String filmPrice = req.getParameter("filmPrice");
-        String filmName = req.getParameter("filmName");
+        String seatNum = req.getParameter("seatNum");
 
-        FilmAllDate filmAllDate = new FilmAllDate();
         int price = 0;
 
         try
+        {//查询用户信息
+            user = service.userDataService(userNum);
+        } catch (SQLException e)
         {
-            user = service.userDataService("userNum");
-        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        if(user.getUserIntegration() > 100)
+        if(user.getUserIntegration() >= 100)
         {
-            price = (int) (Integer.parseInt(filmPrice) * 0.5);
+            filmPrice  = "-100";//打折扣积分
         }
 
         //向数据库添加信息
-        try {
-            insert.byTicketService(userNum,cinemaNum,filmDate,eventNum,filmNum, Integer.parseInt(filmPrice));
-        } catch (SQLException e) {
+        try
+        {
+            insert.byTicketService(userNum,cinemaNum,filmDate,eventNum,filmNum,seatNum,Integer.parseInt(filmPrice));
+        } catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
 
-        filmAllDate.setCinemaNum(cinemaNum);
-        filmAllDate.setFilmDate(filmDate);
-        filmAllDate.setEventNum(eventNum);
-        filmAllDate.setFilmNum(filmNum);
-        filmAllDate.setFilmName(filmName);
-        filmAllDate.setFilmPrice(String.valueOf(price));
-
-        //显示付费信息
         req.setAttribute("user",user);
-        req.setAttribute("filmAllDate",filmAllDate);
-        req.getRequestDispatcher("/.jsp").forward(req,resp);
+        req.getRequestDispatcher("/getTicket.jsp").forward(req,resp);
     }
 
     @Override

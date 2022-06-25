@@ -58,8 +58,7 @@ public class SelectDao
     String where = " where ";
     String and=" and ";
 
-    public SelectDao() throws SQLException {
-    }
+    public SelectDao() throws SQLException {}
 
     /**
      * @作用 登录查询
@@ -196,17 +195,25 @@ public class SelectDao
 
 
     /**
-     * @作用 返回所有座位信息
+     * @作用 根据参数，返回座位信息
+     * @param filmAllDate
      * @return List
      * @throws SQLException
      */
-    public List<Seat> getSeat() throws SQLException
+    public List<Seat> getSeatDao(FilmAllDate filmAllDate) throws SQLException
     {
         List<Seat> list = new ArrayList<>();
         String sql =
                 select+all+
-                        from+seat_table+fenhao;
+                        from+seat_table+
+                        where+
+                        cinemaNum_col+dengyv+danyingh+filmAllDate.getCinemaNum()+danyingh+and+
+                        filmDate_col+dengyv+danyingh+filmAllDate.getFilmDate()+danyingh+and+
+                        eventNum_col+dengyv+danyingh+filmAllDate.getEventNum()+danyingh+and+
+                        filmNum_col+dengyv+danyingh+filmAllDate.getFilmNum()+danyingh+fenhao;
+
         ResultSet resultSet = stmt.executeQuery(sql);
+
         while(resultSet.next())
         {
             Seat seat = new Seat();
@@ -215,12 +222,9 @@ public class SelectDao
             seat.setEventNum(resultSet.getString("eventNum"));
             seat.setUserNum(resultSet.getString("userNum"));
             seat.setSeatNum(resultSet.getString("seatNum"));
-
             list.add(seat);
         }
-
         return list;
-
     }
 
 
@@ -254,12 +258,86 @@ public class SelectDao
 
         return userNum;
     }
+
+
+    /**
+     * @作用 根据参数查询对应的电影信息。
+     * @param filmName 电影名
+     * @return List
+     * @throws SQLException
+     */
+    public List<FilmAllDate> fromNameToFilmDao(String filmName) throws SQLException
+    {
+        List<FilmAllDate> list  = new ArrayList<>();
+
+        String sql =
+                select+all+
+                        from+film_table+
+                        where+filmName_col+dengyv+danyingh+filmName+danyingh+fenhao;
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        if (resultSet == null)
+            return null;
+        else
+        {
+            while(resultSet.next())
+            {
+                FilmAllDate filmAllDate = new FilmAllDate();
+                filmAllDate.setFilmNum(resultSet.getString("filmNum"));
+                filmAllDate.setFilmName(resultSet.getString("filmName"));
+                filmAllDate.setFilmProfile(resultSet.getString("filmProfile"));
+                filmAllDate.setFilmClass(resultSet.getString("filmClass"));
+                filmAllDate.setFilmPrice(resultSet.getString("filmPrice"));
+                list.add(filmAllDate);
+            }
+        }
+        return list;
+
+    }
+    /**
+     * @作用 根据参数查询对应的电影信息。
+     * @param Class 电影分类
+     * @return List
+     * @throws SQLException
+     */
+    public List<FilmAllDate> fromClassToFilmDateDao(String Class) throws SQLException
+    {
+        List<FilmAllDate> list = new ArrayList<>();
+        String sql =
+                select+all+
+                from+film_table+
+                where+filmClass_col+dengyv+danyingh+Class+danyingh+fenhao;
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        if (resultSet == null)
+            return null;
+        else
+        {
+            while(resultSet.next())
+            {
+                FilmAllDate filmAllDate = new FilmAllDate();
+                filmAllDate.setFilmNum(resultSet.getString("filmNum"));
+                filmAllDate.setFilmName(resultSet.getString("filmName"));
+                filmAllDate.setFilmProfile(resultSet.getString("filmProfile"));
+                filmAllDate.setFilmClass(resultSet.getString("filmClass"));
+                filmAllDate.setFilmPrice(resultSet.getString("filmPrice"));
+                list.add(filmAllDate);
+            }
+        }
+        return list;
+    }
+
+
+
+
 //    public static void main(String[] args) throws SQLException
 //    {
 //        SelectDao selectDao = new SelectDao();
 //
-//        String userNum = selectDao.getSeadUserNumDao(new FilmAllDate("1","1","2022-6-21","2"),"1");
-//
-//        System.out.println(userNum);
+//        List<Seat> list = selectDao.getSeatDao(new FilmAllDate("1","1","2022-6-21","2"));
+//        int i = 0;
+//        do {
+//            System.out.println(list.get(i++));
+//        } while (i != list.size());
 //    }
 }

@@ -10,8 +10,8 @@ import java.sql.Statement;
 public class DatabaseLinkUtils
 {
 
-    private static Connection conn; // 数据库连接
-    private static Statement stmt; // 数据库操作
+    private static final Connection conn; // 数据库连接
+    private static final Statement stmt; // 数据库操作
 
     static
     {
@@ -27,14 +27,18 @@ public class DatabaseLinkUtils
             stmt = conn.createStatement();
         } catch (SQLException | ClassNotFoundException e)
         {
+            System.out.println("数据库连接失败");
             throw new RuntimeException(e);
         }
     }
 
-
-    public static Statement getStatement() throws SQLException
+    /**
+     * @作用 自动连接数据库的工具类
+     * @return Statement
+     */
+    public static Statement getStatement()
     {
-        return stmt;// 实例化Statement对象
+        return stmt;// 返回Statement对象
     }
 
 }

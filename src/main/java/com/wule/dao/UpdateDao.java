@@ -42,18 +42,13 @@ public class UpdateDao
     String filmPrice_col = "filmPrice";//电影价格
     String seatNum_col = " seatNum";
 
-
-    String benzhou = " datediff(now(),filmDate) <= 7 ";//计算电影离今天的天数。
-
-
     String update = " update ";
     String from = " from ";
     String where = " where ";
     String and=" and ";
     String set = " set ";
 
-    public UpdateDao() throws SQLException {
-    }
+    public UpdateDao() throws SQLException {}
 
     /**
      * @作用 根据参数，给用户座位。
@@ -72,8 +67,9 @@ public class UpdateDao
         stmt.executeUpdate(sql);
     }
 
-    public static void main(String[] args) throws SQLException {
-        UpdateDao updateDao = new UpdateDao();
-        updateDao.addUserToSeatDao(new FilmAllDate("1","1","2022-6-21","2"),"1","1");
-    }
+//    public static void main(String[] args) throws SQLException
+//    {
+//        UpdateDao updateDao = new UpdateDao();
+//        updateDao.addUserToSeatDao(new FilmAllDate("1","1","2022-6-21","2"),"1","1");
+//    }
 }

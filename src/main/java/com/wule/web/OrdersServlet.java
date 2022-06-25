@@ -19,15 +19,12 @@ import java.util.List;
 public class OrdersServlet extends HttpServlet
 {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
         User user;
         SelectService service = new SelectService();
         List<Seat> list;
-        try {
-             list = service.getSeatService();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
         String userNum = req.getParameter("userNum");
         String cinemaNum = req.getParameter("cinemaNum");
         String filmDate = req.getParameter("filmDate");
@@ -37,7 +34,8 @@ public class OrdersServlet extends HttpServlet
         String filmName = req.getParameter("filmName");
 
         FilmAllDate filmAllDate = new FilmAllDate();
-        int price = 0;
+
+        int price;
 
         try
         {
@@ -54,6 +52,7 @@ public class OrdersServlet extends HttpServlet
         {
             price = Integer.parseInt(filmPrice);
         }
+
         filmAllDate.setCinemaNum(cinemaNum);
         filmAllDate.setFilmDate(filmDate);
         filmAllDate.setEventNum(eventNum);
@@ -61,6 +60,13 @@ public class OrdersServlet extends HttpServlet
         filmAllDate.setFilmName(filmName);
         filmAllDate.setFilmPrice(String.valueOf(price));
 
+        try
+        {
+            list = service.getSeatService(filmAllDate);
+        } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
 
 
         req.setAttribute("price",price);
@@ -72,7 +78,8 @@ public class OrdersServlet extends HttpServlet
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
         this.doGet(req,resp);
     }
 }

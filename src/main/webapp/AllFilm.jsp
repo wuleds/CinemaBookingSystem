@@ -31,20 +31,20 @@
         <th>操作</th>
     </tr>
 
-    <c:forEach items="${list}" var="FilmAllDate" varStatus="status">
+    <c:forEach items="${list}" var="filmAllDate" varStatus="status">
         <tr style="text-align:center">
 
             <td>${status.count}</td>
-            <td>${FilmAllDate.cinemaNum}</td>
-            <td>${FilmAllDate.filmDate}</td>
-            <td>${FilmAllDate.eventNum}</td>
-            <td>${FilmAllDate.filmNum}</td>
-            <td>${FilmAllDate.filmName}</td>
-            <td>${FilmAllDate.filmProfile}</td>
-            <td>${FilmAllDate.filmClass}</td>
-            <td>${FilmAllDate.filmPrice}￥</td>
-            <td>${FilmAllDate.eventBeginTime}</td>
-            <td>${FilmAllDate.eventEndTime}</td>
+            <td>${filmAllDate.cinemaNum}</td>
+            <td>${filmAllDate.filmDate}</td>
+            <td>${filmAllDate.eventNum}</td>
+            <td>${filmAllDate.filmNum}</td>
+            <td>${filmAllDate.filmName}</td>
+            <td>${filmAllDate.filmProfile}</td>
+            <td>${filmAllDate.filmClass}</td>
+            <td>${filmAllDate.filmPrice}￥</td>
+            <td>${filmAllDate.eventBeginTime}</td>
+            <td>${filmAllDate.eventEndTime}</td>
 
             <td>
                 <c:if test="${user.userPower == 'visitor'}">
@@ -52,10 +52,8 @@
                 </c:if>
 
                 <c:if test="${user.userPower != 'visitor'}">
-                     <a href="/DatabaseHomework_war/ordersServlet?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}&userName=${userName}
-                     &cinemaNum=${FilmAllDate.cinemaNum}&filmDate=${FilmAllDate.filmDate}&eventNum=${FilmAllDate.eventNum}
-                &filmNum=${FilmAllDate.filmNum}&filmPrice=${FilmAllDate.filmPrice}&filmName=${FilmAllDate.filmName}">
-                        <input type="submit" value="购买">
+                     <a href="/DatabaseHomework_war/ordersServlet?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}&userName=${userName}&cinemaNum=${filmAllDate.cinemaNum}&filmDate=${filmAllDate.filmDate}&eventNum=${filmAllDate.eventNum}&filmNum=${filmAllDate.filmNum}&filmPrice=${filmAllDate.filmPrice}&filmName=${filmAllDate.filmName}">
+                        购买
                     </a>
                 </c:if>
             </td>

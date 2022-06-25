@@ -2,6 +2,7 @@ package com.wule.service;
 
 import com.wule.dao.InsertIntoDao;
 import com.wule.dao.SelectDao;
+import com.wule.dao.UpdateDao;
 import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.User;
 
@@ -48,11 +49,16 @@ public class InsertIntoService
      * @param filmPrice
      * @throws SQLException
      */
-    public void byTicketService(String userNum,String cinemaNum,String filmDate,String eventNum,
-                                String filmNum,int filmPrice) throws SQLException
+    public void byTicketService(String userNum,String cinemaNum,String filmDate,String eventNum, String filmNum,String seatNum,int filmPrice) throws SQLException
     {
         InsertIntoDao insertIntoDao = new InsertIntoDao();
-
+        UpdateDao updateDao = new UpdateDao();
+        FilmAllDate filmAllDate = new FilmAllDate();
+        filmAllDate.setCinemaNum(cinemaNum);
+        filmAllDate.setFilmDate(filmDate);
+        filmAllDate.setEventNum(eventNum);
+        filmAllDate.setFilmNum(filmNum);
+        updateDao.addUserToSeatDao(filmAllDate,seatNum,userNum);//占座
         insertIntoDao.byTicketDao(userNum,cinemaNum,filmDate,eventNum,filmNum,filmPrice);
     }
 
@@ -74,7 +80,8 @@ public class InsertIntoService
     /**
      * @作用 查询本周所有电影，然后给所有场次添加座位
      */
-    public void addAllEventSeat() throws SQLException {
+    public void addAllEventSeat() throws SQLException
+    {
         InsertIntoService service = new InsertIntoService();
         SelectDao dao = new SelectDao();
         List<FilmAllDate> list = dao.getAllFilmDao();
@@ -86,6 +93,10 @@ public class InsertIntoService
         } while (i != list.size());
 
     }
+
+
+
+
 
 //    public static void main(String[] args) throws SQLException {
 //        InsertIntoService service = new InsertIntoService();

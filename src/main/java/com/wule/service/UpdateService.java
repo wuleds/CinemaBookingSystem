@@ -17,7 +17,8 @@ public class UpdateService
      * @return true：没卖，添加成功；false：已卖，添加失败
      * @throws SQLException
      */
-    public boolean addUserToSeatService(FilmAllDate filmAllDate, String seatNum, String userNum) throws SQLException {
+    public boolean addUserToSeatService(FilmAllDate filmAllDate, String seatNum, String userNum) throws SQLException
+    {
         UpdateDao updateDao = new UpdateDao();
         SelectDao selectDao = new SelectDao();
 
