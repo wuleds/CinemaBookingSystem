@@ -13,20 +13,23 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <c:if test="${user.userPower=='visitor'|| user.userNum != null}">
+    <c:if test="${user.userPower == 'visitor'|| user.userNum != null}">
 
         <div  style="margin-top: 100px;margin-left: 600px">
 
             <a href="/DatabaseHomework_war/userDataServlet?userPower=${user.userPower}&userNum=${user.userNum}">
-                <input type="button" style="width: 200px;height: 50px;margin-top: 20px" value="用户信息">
+                <input type="button" style="width: 200px;height: 50px;margin-top: 20px" value="我的信息">
             </a>
 
-            <a href="">
-                <input type="button" style="width: 200px;height: 50px;margin-top: 20px" value="搜索">
+            <a href="/DatabaseHomework_war/myTicketServlet?userPower=${user.userPower}&userNum=${user.userNum}">
+                <input type="button" style="width: 200px;height: 50px;margin-top: 20px" value="我的电影票">
             </a>
 
             <a href="/DatabaseHomework_war/homeAllFilmServlet?userPower=${user.userPower}&userNum=${user.userNum}&userPassword=${user.userPassword}">
                 <input type="button" style="width: 200px;height: 50px;margin-top: 20px" value="本周电影">
+            </a>
+            <a href="login.html">
+                <input type="button" style="width: 200px;height: 50px;margin-top: 20px" value="退出">
             </a>
 
         </div>

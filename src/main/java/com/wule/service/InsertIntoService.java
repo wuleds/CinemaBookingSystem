@@ -59,7 +59,7 @@ public class InsertIntoService
         filmAllDate.setEventNum(eventNum);
         filmAllDate.setFilmNum(filmNum);
         updateDao.addUserToSeatDao(filmAllDate,seatNum,userNum);//占座
-        insertIntoDao.byTicketDao(userNum,cinemaNum,filmDate,eventNum,filmNum,filmPrice);
+        insertIntoDao.byTicketDao(userNum,cinemaNum,filmDate,eventNum,filmNum,filmPrice,seatNum);
     }
 
 

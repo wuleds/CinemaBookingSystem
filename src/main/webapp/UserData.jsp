@@ -9,9 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>用户信息</title>
+    <title>我的信息</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
 </head>
 <body>
 
@@ -38,6 +37,5 @@
 
     </div>
 </div>
-
 </body>
 </html>

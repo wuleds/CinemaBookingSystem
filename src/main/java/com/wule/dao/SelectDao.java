@@ -193,6 +193,35 @@ public class SelectDao
         return user;
     }
 
+    /**
+     * @作用 根据用户号查询票仓。
+     * @param userNum 用户号
+     * @return List
+     */
+    public List<Seat> getTicketDao(String userNum) throws SQLException
+    {
+        List<Seat> list = new ArrayList<>();
+        String sql =
+                select+all+
+                        from+ticket_table+
+                        where+userNum_col+dengyv+danyingh+userNum+danyingh+fenhao;
+
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        while(resultSet.next())
+        {
+            Seat seat = new Seat();
+            seat.setUserNum(resultSet.getString("userNum"));
+            seat.setCinemaNum(resultSet.getString("cinemaNum"));
+            seat.setFilmDate(resultSet.getString("filmDate"));
+            seat.setEventNum(resultSet.getString("eventNum"));
+            seat.setSeatNum(resultSet.getString("seatNum"));
+            seat.setFilmNum(resultSet.getString("filmNum"));
+
+            list.add(seat);
+        }
+        return list;
+    }
 
     /**
      * @作用 根据参数，返回座位信息
@@ -334,10 +363,7 @@ public class SelectDao
 //    {
 //        SelectDao selectDao = new SelectDao();
 //
-//        List<Seat> list = selectDao.getSeatDao(new FilmAllDate("1","1","2022-6-21","2"));
-//        int i = 0;
-//        do {
-//            System.out.println(list.get(i++));
-//        } while (i != list.size());
+//        List<Seat> list = selectDao.getTicketDao("1");
+//        System.out.println(list);
 //    }
 }

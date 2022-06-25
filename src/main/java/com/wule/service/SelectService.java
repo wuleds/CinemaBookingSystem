@@ -61,6 +61,16 @@ public class SelectService
         return selectdao.getSeatDao(filmAllDate);
     }
 
+    /**
+     * @作用 根据用户号查询票仓。
+     * @param userNum 用户号
+     * @return List
+     */
+    public List<Seat> getTicketService(String userNum) throws SQLException
+    {
+        SelectDao selectDao = new SelectDao();
+        return selectDao.getTicketDao(userNum);
+    }
 
     /**
      * @作用 判断该用户是否有人；如果有人，则返回用户号。

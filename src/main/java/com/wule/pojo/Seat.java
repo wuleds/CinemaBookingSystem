@@ -8,6 +8,7 @@ public class Seat
     String filmDate;
     String eventNum;
     String seatNum;
+    String filmNum;
 
     @Override
     public String toString() {
@@ -17,7 +18,16 @@ public class Seat
                 ", filmDate='" + filmDate + '\'' +
                 ", eventNum='" + eventNum + '\'' +
                 ", seatNum='" + seatNum + '\'' +
+                ", filmNum='" + filmNum + '\'' +
                 '}';
+    }
+
+    public String getFilmNum() {
+        return filmNum;
+    }
+
+    public void setFilmNum(String filmNum) {
+        this.filmNum = filmNum;
     }
 
     public String getUserNum() {

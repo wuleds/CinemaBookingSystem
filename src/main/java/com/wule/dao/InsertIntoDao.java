@@ -87,7 +87,7 @@ public class InsertIntoDao
      * @param filmPrice ,
      * @throws SQLException ,
      */
-    public void byTicketDao(String userNum,String cinemaNum,String filmDate,String eventNum, String filmNum,int filmPrice) throws SQLException
+    public void byTicketDao(String userNum,String cinemaNum,String filmDate,String eventNum, String filmNum,int filmPrice,String seatNum) throws SQLException
     {
 
         String addUserIntegration = update+user_table+
@@ -95,12 +95,13 @@ public class InsertIntoDao
                 where+userNum_col +dengyv + danyingh+userNum+danyingh+fenhao;
         //给用户加积分。
         String sql = insert+ticket_table+
-                "("+userNum_col+douhao+cinemaNum_col+douhao+filmDate_col+douhao+eventNum_col+douhao+filmNum_col+") "+
+                "("+userNum_col+douhao+cinemaNum_col+douhao+filmDate_col+douhao+eventNum_col+douhao+filmNum_col+douhao+seatNum_col+") "+
                 values+"("+danyingh+userNum+danyingh+douhao+
                 danyingh+cinemaNum+danyingh+douhao+
                 danyingh+filmDate+danyingh+douhao+
                 danyingh+eventNum+danyingh+douhao+
-                danyingh+filmNum+danyingh+")"+fenhao;
+                danyingh+filmNum+danyingh+douhao+
+                danyingh+seatNum+danyingh+")"+fenhao;
         //向用户票仓添加票
 
         stmt.executeUpdate(addUserIntegration);

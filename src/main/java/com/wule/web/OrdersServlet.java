@@ -62,7 +62,7 @@ public class OrdersServlet extends HttpServlet
 
         try
         {
-            list = service.getSeatService(filmAllDate);
+            list = service.getSeatService(filmAllDate);//获取座位表
         } catch (SQLException e)
         {
             throw new RuntimeException(e);

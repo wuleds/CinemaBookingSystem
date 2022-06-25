@@ -63,7 +63,7 @@
 </table>
 
     <a href="/DatabaseHomework_war/userLoginServlet?userNum=${user.userNum}&userPower=${user.userPower}&userPassword=${user.userPassword}">
-        <input type="submit" style="width: 150px;height: 30px ;margin-left: 400px;margin-top: 10px" value="返回主页面">
+        <input type="submit" style="width: 150px;height: 30px ;margin-left: 345px;margin-top: 10px" value="返回主页面">
     </a>
 
 </div>

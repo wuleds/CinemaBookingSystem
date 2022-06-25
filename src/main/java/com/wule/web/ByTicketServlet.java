@@ -35,8 +35,6 @@ public class ByTicketServlet extends HttpServlet
         String filmPrice = req.getParameter("filmPrice");
         String seatNum = req.getParameter("seatNum");
 
-        int price = 0;
-
         try
         {//查询用户信息
             user = service.userDataService(userNum);
