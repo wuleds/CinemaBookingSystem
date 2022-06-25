@@ -27,6 +27,8 @@
                 <Strong>价格：${price}</Strong>
                 <br>
 
+                剩余座位：
+                <br>
                 <c:forEach items="${seatList}" var="seat" varStatus="id">
 
                     <c:if test="${seat.userNum == null}">
