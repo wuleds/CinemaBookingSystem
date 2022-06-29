@@ -24,7 +24,6 @@
         <c:if test="${user.userPower != 'visitor'}">
             <p>用户号:&nbsp;${user.userNum}</p>
             <p>用户名:&nbsp;${user.userName}</p>
-            <p>密码:&nbsp;${user.userPassword}</p>
             <p>权限:&nbsp;${user.userPower}</p>
             <p>积分:&nbsp;${user.userIntegration}</p>
         </c:if>
