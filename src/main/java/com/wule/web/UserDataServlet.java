@@ -41,11 +41,7 @@ public class UserDataServlet extends HttpServlet
             {
                 throw new RuntimeException(e);
             }
-
-            System.out.println(user);
-
         }
-
         req.setAttribute("user",user);
         req.getRequestDispatcher("/UserData.jsp").forward(req,resp);
     }

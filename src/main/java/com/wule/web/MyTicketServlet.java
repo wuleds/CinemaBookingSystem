@@ -25,8 +25,6 @@ public class MyTicketServlet extends HttpServlet
         SelectService service = new SelectService();
         List<Seat> list = null;
 
-
-        System.out.println("userPower"+userPower);
         if (userPower.equals("visitor"))
         {
             user.setUserPower(userPower);
