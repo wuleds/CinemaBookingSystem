@@ -1,6 +1,5 @@
 package com.wule.web;
 
-import com.wule.pojo.FilmAllDate;
 import com.wule.pojo.User;
 import com.wule.service.InsertIntoService;
 import com.wule.service.SelectService;

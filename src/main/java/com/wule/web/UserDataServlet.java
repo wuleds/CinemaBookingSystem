@@ -1,6 +1,5 @@
 package com.wule.web;
 
-import com.wule.pojo.Seat;
 import com.wule.pojo.User;
 import com.wule.service.SelectService;
 
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 //创建于2022/6/23 15:51
 @WebServlet("/userDataServlet")

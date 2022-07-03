@@ -10,8 +10,8 @@ import java.sql.Statement;
 public class DatabaseLinkUtils
 {
 
-    private static final Connection conn; // 数据库连接
-    private static final Statement stmt; // 数据库操作
+    private static final Connection conn;
+    private static final Statement stmt;
 
     static
     {
@@ -23,7 +23,7 @@ public class DatabaseLinkUtils
         try
         {
             Class.forName(Driver) ; // 加载驱动程序
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, user, password);//连接数据库
             stmt = conn.createStatement();
         } catch (SQLException | ClassNotFoundException e)
         {
