@@ -17,7 +17,8 @@ public class FilmAllDate
     public FilmAllDate() {
     }
 
-    public FilmAllDate(String cinemaNum, String eventNum, String filmDate, String filmNum) {
+    public FilmAllDate(String cinemaNum, String eventNum, String filmDate, String filmNum)
+    {
         this.cinemaNum = cinemaNum;
         this.eventNum = eventNum;
         this.filmDate = filmDate;
