@@ -13,7 +13,7 @@ public class DatabaseLinkUtils
     private static final Connection conn;
     private static final Statement stmt;
 
-    static
+    static  //静态代码块，只执行一次。
     {
         final String Driver ="com.mysql.cj.jdbc.Driver" ;
         final String url = "jdbc:mysql://127.0.0.1:3306/javadata?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8";
