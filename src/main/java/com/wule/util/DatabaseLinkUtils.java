@@ -16,14 +16,16 @@ public class DatabaseLinkUtils
     static  //静态代码块，只执行一次。
     {
         final String Driver ="com.mysql.cj.jdbc.Driver" ;
-        final String url = "jdbc:mysql://127.0.0.1:3306/javadata?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8";
+        final String url = "jdbc:mysql://127.0.0.1:3306/cinema?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8";
         final String user = "root";
         final String password = "123456";
 
         try
         {
-            Class.forName(Driver) ; // 加载驱动程序
-            conn = DriverManager.getConnection(url, user, password);//连接数据库
+            Class.forName(Driver) ;
+            // 加载驱动程序
+            conn = DriverManager.getConnection(url, user, password);
+            //连接数据库
             stmt = conn.createStatement();
         } catch (SQLException | ClassNotFoundException e)
         {
