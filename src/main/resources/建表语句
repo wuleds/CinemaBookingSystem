@@ -1,0 +1,73 @@
+create database cinema;
+
+use cinema;
+#用户表
+create table user
+(
+    userNum char(20) ,
+    userName char(20),
+    userPassword char(20),
+    userPower char(20),
+    userIntegration int,
+    primary key(userNum)
+);
+#用户票仓
+create table ticket
+(
+    userNum char(20),
+    cinemaNum char(20),
+    filmDate date,
+    eventNum char(20),
+    filmNum char(20),
+    seatNum char(20)
+);
+
+#电影信息
+create table film
+(
+    filmNum char(20),
+    filmName char(50),
+    filmProfile char(200),
+    filmClass char(20),
+    filmPrice int,
+    primary key(filmNum)
+);
+
+#放映厅
+create table cinema
+(
+    cinemaNum char(20),
+    primary key(cinemaNum)
+);
+
+#拍片日期
+create table filmDate
+(
+    cinemaNum char(20),
+    filmDate date,
+    eventNum char(20)
+);
+
+#场次
+create table event
+(
+    cinemaNum char(20),
+    eventNum char(20),
+    filmNum char(20),
+    eventBeginTime time,
+    eventEndTime time,
+    filmDate date
+);
+
+#座位
+create table seat
+(
+    eventNum char(20),
+    seatNum char(20),
+    userNum char(20),
+    filmDate date,
+    filmNum char(20),
+    cinemaNum char(20)
+);
+
+
